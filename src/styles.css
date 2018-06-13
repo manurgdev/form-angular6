@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+.basic-radio-group{
+    padding: 10px;
+}
+label{
+    font-family: sans-serif;
+}
+.block{
+    display: block;
+}
+
+.w100{
+    width: 100%;
+}
+
+.containerX{
+    text-align: center;
+    border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+padding: 10px;
+border: 0px solid #000000;
+background-color: #ebe7df;
+}
+
+.dgTxt12{
+	color:red;
+	font-size:12px;
+}

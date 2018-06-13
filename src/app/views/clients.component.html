@@ -1,0 +1,91 @@
+<div class="containerX">
+    <form #formClient="ngForm" (ngSubmit)="onSubmit()">
+        <div fxLayout.xs="column" fxLayout.md="row">
+            <div fxFlex>
+                <mat-form-field ngClass.xs="w100">
+                    <mat-label>Nombre completo</mat-label>
+                    <input matInput autocomplete="off" placeholder="Nombre completo..." type="text" name="name" #nombre="ngModel" [(ngModel)]="client.name" required>
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field ngClass.xs="w100">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput autocomplete="off" type="text" placeholder="Correo electrónico..." name="email" (keyup)="searchEmail(client.email)" #email="ngModel" [(ngModel)]="client.email" required>
+                    <span class="dgTxt12" *ngIf="!validateEmail(client.email) && client.email!==''"> El correo no es correcto</span>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout.xs="column" fxLayout.md="row">
+            <div fxFlex>
+                <mat-form-field ngClass.xs="w100">
+                    <mat-label>DNI/NIF</mat-label>
+                    <input matInput autocomplete="off" type="text" placeholder="DNI/NIF..." name="dninif" (keyup)="searchDni(client.dninif)" #dninif="ngModel" [(ngModel)]="client.dninif" required>
+                    <span class="dgTxt12" *ngIf="!validateDNI(client.dninif) && client.dninif!==''"> El DNI no es correcto</span>
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <label id="lblNews" ngClass="block">Suscrito a newsletter</label>
+                <mat-radio-group aria-labelledby="lblNews" name="newsletter" [(ngModel)]="client.newsletter">
+                    <mat-radio-button class="basic-radio-group" value="1">Sí</mat-radio-button>
+                    <mat-radio-button class="basic-radio-group" value="0">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div fxLayout.xs="column" fxLayout.md="row">
+            <div fxFlex>
+                <mat-form-field ngClass.xs="w100">
+                    <mat-label>Tipo de captación</mat-label>
+                    <mat-select name="catchmentType" placeholder="Tipo de captación..." [(ngModel)]="client.catchmentType" required>
+                        <mat-option *ngFor="let catchmentType of catchmentTypes" [value]="catchmentType.value">
+                        {{ catchmentType.value }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field ngClass.xs="w100">
+                    <mat-label>Dirección</mat-label>
+                    <input matInput autocomplete="off" type="text" placeholder="Dirección..." name="address" #address="ngModel" [(ngModel)]="client.address">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout.xs="column" fxLayout.md="row">
+            <div fxFlex>
+                <mat-form-field ngClass.xs="w100">
+                    <mat-label>Código postal</mat-label>
+                    <input matInput autocomplete="off" type="text" placeholder="Código postal..." name="zipCode" #zipCode="ngModel" [(ngModel)]="client.zipCode">
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field ngClass.xs="w100">
+                    <mat-label>Región</mat-label>
+                    <input matInput autocomplete="off" type="text" placeholder="Región..." name="region" #region="ngModel" [(ngModel)]="client.region">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout.xs="column" fxLayout.md="row">
+            <div fxFlex>
+                <mat-form-field ngClass.xs="w100">
+                    <mat-label>Ciudad</mat-label>
+                    <input matInput autocomplete="off" type="text" placeholder="Ciudad..." name="city" #city="ngModel" [(ngModel)]="client.city">
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field ngClass.xs="w100">
+                    <mat-label>País</mat-label>
+                    <input matInput autocomplete="off" type="text" placeholder="País..." name="country" #country="ngModel" [(ngModel)]="client.country">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="column">
+            <mat-form-field class="w100">
+                <mat-label>Observaciones</mat-label>
+                <textarea matInput style="height:100px"  ngStyle.xs="height:80px" type="text" placeholder="Observaciones..." name="observations" #observations="ngModel" [(ngModel)]="client.observations"></textarea>
+            </mat-form-field>
+        </div>
+        <div flexLayout="column" style="text-align: left;">
+            <button ngClass.xs="w100" [disabled]="!formClient.form.valid || !validateDNI(client.dninif) || !validateEmail(client.email)" mat-raised-button type="submit">Guardar</button>
+            <button ngClass.xs="w100" style="float: right;" ngStyle.xs="margin-top:10px" mat-raised-button type="button" (click)="cleanClient()">Limpiar</button>
+        </div>
+    </form>
+</div>
